@@ -173,7 +173,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="DAL\Companys.cs" />
-    <Compile Include="DAL\DailyDbModel.cs" />
+    <Compile Include="DAL\DailyDbContext.cs" />
     <Compile Include="DAL\Projects.cs" />
     <Compile Include="DAL\WorkAreas.cs" />
     <Compile Include="DAL\WorkItemPrices.cs" />
