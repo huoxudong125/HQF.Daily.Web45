@@ -6,12 +6,12 @@ namespace HQF.Daily.Web45.DAL
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class Projects
+    public partial class Project
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Projects()
+        public Project()
         {
-            WorkAreas = new HashSet<WorkAreas>();
+            WorkAreas = new HashSet<WorkArea>();
         }
 
         public int Id { get; set; }
@@ -27,6 +27,6 @@ namespace HQF.Daily.Web45.DAL
         public DateTime UpdateTime { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<WorkAreas> WorkAreas { get; set; }
+        public virtual ICollection<WorkArea> WorkAreas { get; set; }
     }
 }

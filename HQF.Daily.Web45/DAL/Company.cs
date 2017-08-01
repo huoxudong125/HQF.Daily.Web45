@@ -6,7 +6,8 @@ namespace HQF.Daily.Web45.DAL
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class Companys
+    [Table("Companys")]
+    public partial class Company
     {
         public int Id { get; set; }
 

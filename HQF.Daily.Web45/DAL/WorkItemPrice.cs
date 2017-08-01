@@ -6,25 +6,40 @@ namespace HQF.Daily.Web45.DAL
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class WorkUnits
+    public partial class WorkItemPrice
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public WorkUnits()
+        public WorkItemPrice()
         {
-            WorkTypeUnits = new HashSet<WorkTypeUnits>();
+            WorkItemProgresses = new HashSet<WorkItemProgress>();
         }
 
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
+
+        public int WorkItemId { get; set; }
+
+        public int WorkTypeUnitId { get; set; }
+
+        public int? WorkTeamId { get; set; }
+
+        public int Price { get; set; }
+
+        public string Remark { get; set; }
 
         [Column(TypeName = "datetime2")]
         public DateTime CreateTime { get; set; }
 
-        public string Name { get; set; }
-
         [Column(TypeName = "datetime2")]
         public DateTime UpdateTime { get; set; }
 
+        public virtual WorkItem WorkItem { get; set; }
+
+        public virtual WorkTeam WorkTeam { get; set; }
+
+        public virtual WorkTypeUnit WorkTypeUnit { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<WorkTypeUnits> WorkTypeUnits { get; set; }
+        public virtual ICollection<WorkItemProgress> WorkItemProgresses { get; set; }
     }
 }

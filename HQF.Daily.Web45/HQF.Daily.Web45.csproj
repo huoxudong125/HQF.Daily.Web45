@@ -172,17 +172,19 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="DAL\Companys.cs" />
+    <Compile Include="Controllers\WorkItemPricesController.cs" />
+    <Compile Include="DAL\Company.cs" />
     <Compile Include="DAL\DailyDbContext.cs" />
-    <Compile Include="DAL\Projects.cs" />
-    <Compile Include="DAL\WorkAreas.cs" />
-    <Compile Include="DAL\WorkItemPrices.cs" />
-    <Compile Include="DAL\WorkItemProgresses.cs" />
-    <Compile Include="DAL\WorkItems.cs" />
-    <Compile Include="DAL\WorkTeams.cs" />
-    <Compile Include="DAL\WorkTypes.cs" />
-    <Compile Include="DAL\WorkTypeUnits.cs" />
-    <Compile Include="DAL\WorkUnits.cs" />
+    <Compile Include="DAL\DailyDbContextInitializer.cs" />
+    <Compile Include="DAL\Project.cs" />
+    <Compile Include="DAL\WorkArea.cs" />
+    <Compile Include="DAL\WorkItem.cs" />
+    <Compile Include="DAL\WorkItemPrice.cs" />
+    <Compile Include="DAL\WorkItemProgress.cs" />
+    <Compile Include="DAL\WorkTeam.cs" />
+    <Compile Include="DAL\WorkType.cs" />
+    <Compile Include="DAL\WorkTypeUnit.cs" />
+    <Compile Include="DAL\WorkUnit.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -247,6 +249,11 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\WorkItemPrices\Create.cshtml" />
+    <Content Include="Views\WorkItemPrices\Delete.cshtml" />
+    <Content Include="Views\WorkItemPrices\Details.cshtml" />
+    <Content Include="Views\WorkItemPrices\Edit.cshtml" />
+    <Content Include="Views\WorkItemPrices\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

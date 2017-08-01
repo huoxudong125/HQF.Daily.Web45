@@ -6,13 +6,13 @@ namespace HQF.Daily.Web45.DAL
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class WorkItems
+    public partial class WorkItem
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public WorkItems()
+        public WorkItem()
         {
-            WorkItemProgresses = new HashSet<WorkItemProgresses>();
-            WorkItems1 = new HashSet<WorkItems>();
+            WorkItemPrices = new HashSet<WorkItemPrice>();
+            SubWorkItems = new HashSet<WorkItem>();
         }
 
         public int Id { get; set; }
@@ -31,22 +31,18 @@ namespace HQF.Daily.Web45.DAL
 
         public int WorkAreaId { get; set; }
 
-        public int? WorkTeamId { get; set; }
-
         public int WorkTypeId { get; set; }
 
-        public virtual WorkAreas WorkAreas { get; set; }
+        public virtual WorkArea WorkArea { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<WorkItemProgresses> WorkItemProgresses { get; set; }
+        public virtual ICollection<WorkItemPrice> WorkItemPrices { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<WorkItems> WorkItems1 { get; set; }
+        public virtual ICollection<WorkItem> SubWorkItems { get; set; }
 
-        public virtual WorkItems WorkItems2 { get; set; }
+        public virtual WorkItem ParentWorkItem { get; set; }
 
-        public virtual WorkTeams WorkTeams { get; set; }
-
-        public virtual WorkTypes WorkTypes { get; set; }
+        public virtual WorkType WorkType { get; set; }
     }
 }

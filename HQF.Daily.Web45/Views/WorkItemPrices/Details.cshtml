@@ -1,0 +1,75 @@
+﻿@model HQF.Daily.Web45.DAL.WorkItemPrice
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>WorkItemPrice</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.WorkItem.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WorkItem.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WorkTeam.ContractName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WorkTeam.ContractName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WorkTypeUnit.Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WorkTypeUnit.Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Remark)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Remark)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdateTime)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

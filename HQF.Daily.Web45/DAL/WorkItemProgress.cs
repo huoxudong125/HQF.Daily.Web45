@@ -6,7 +6,7 @@ namespace HQF.Daily.Web45.DAL
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class WorkItemProgresses
+    public partial class WorkItemProgress
     {
         public int Id { get; set; }
 
@@ -19,18 +19,10 @@ namespace HQF.Daily.Web45.DAL
         [Column(TypeName = "datetime2")]
         public DateTime UpdateTime { get; set; }
 
-        public int WorkItemId { get; set; }
-
         public int? WorkItemPriceId { get; set; }
 
-        public long WorkQuantity { get; set; }
+        public double WorkQuantity { get; set; }
 
-        public int WorkTeamId { get; set; }
-
-        public virtual WorkItemPrices WorkItemPrices { get; set; }
-
-        public virtual WorkItems WorkItems { get; set; }
-
-        public virtual WorkTeams WorkTeams { get; set; }
+        public virtual WorkItemPrice WorkItemPrice { get; set; }
     }
 }
