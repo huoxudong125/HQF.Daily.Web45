@@ -10,6 +10,7 @@ namespace HQF.Daily.Web45.DAL
     {
         public int Id { get; set; }
 
+        [Display(Name="新建时间")]
         [Column(TypeName = "datetime2")]
         public DateTime CreateTime { get; set; }
 
@@ -21,8 +22,10 @@ namespace HQF.Daily.Web45.DAL
 
         public int? WorkItemPriceId { get; set; }
 
+        [Display(Name ="当日工作量")]
         public double WorkQuantity { get; set; }
 
+        [Display(Name ="单价")]
         public virtual WorkItemPrice WorkItemPrice { get; set; }
     }
 }
