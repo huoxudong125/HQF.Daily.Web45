@@ -40,7 +40,7 @@ namespace HQF.Daily.Web45.Controllers
         public ActionResult Create()
         {
             ViewBag.WorkItemId = new SelectList(db.WorkItems, "Id", "Name");
-            ViewBag.WorkTeamId = new SelectList(db.WorkTeams, "Id", "ContractName");
+            ViewBag.WorkTeamId = new SelectList(db.WorkTeams, "Id", "Name");
             ViewBag.WorkTypeUnitId = new SelectList(db.WorkTypeUnits, "Id", "Id");
             return View();
         }
@@ -60,7 +60,7 @@ namespace HQF.Daily.Web45.Controllers
             }
 
             ViewBag.WorkItemId = new SelectList(db.WorkItems, "Id", "Name", workItemPrice.WorkItemId);
-            ViewBag.WorkTeamId = new SelectList(db.WorkTeams, "Id", "ContractName", workItemPrice.WorkTeamId);
+            ViewBag.WorkTeamId = new SelectList(db.WorkTeams, "Id", "Name", workItemPrice.WorkTeamId);
             ViewBag.WorkTypeUnitId = new SelectList(db.WorkTypeUnits, "Id", "Id", workItemPrice.WorkTypeUnitId);
             return View(workItemPrice);
         }
@@ -78,7 +78,7 @@ namespace HQF.Daily.Web45.Controllers
                 return HttpNotFound();
             }
             ViewBag.WorkItemId = new SelectList(db.WorkItems, "Id", "Name", workItemPrice.WorkItemId);
-            ViewBag.WorkTeamId = new SelectList(db.WorkTeams, "Id", "ContractName", workItemPrice.WorkTeamId);
+            ViewBag.WorkTeamId = new SelectList(db.WorkTeams, "Id", "Name", workItemPrice.WorkTeamId);
             ViewBag.WorkTypeUnitId = new SelectList(db.WorkTypeUnits, "Id", "Id", workItemPrice.WorkTypeUnitId);
             return View(workItemPrice);
         }
@@ -97,7 +97,7 @@ namespace HQF.Daily.Web45.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.WorkItemId = new SelectList(db.WorkItems, "Id", "Name", workItemPrice.WorkItemId);
-            ViewBag.WorkTeamId = new SelectList(db.WorkTeams, "Id", "ContractName", workItemPrice.WorkTeamId);
+            ViewBag.WorkTeamId = new SelectList(db.WorkTeams, "Id", "Name", workItemPrice.WorkTeamId);
             ViewBag.WorkTypeUnitId = new SelectList(db.WorkTypeUnits, "Id", "Id", workItemPrice.WorkTypeUnitId);
             return View(workItemPrice);
         }
