@@ -25,6 +25,7 @@ namespace HQF.Daily.Web45.DAL
 
         public string MobilePhone { get; set; }
 
+        [Display(Name="工程队名")]
         public string Name { get; set; }
 
         public string TelPhone { get; set; }

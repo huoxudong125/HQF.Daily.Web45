@@ -19,6 +19,7 @@ namespace HQF.Daily.Web45.DAL
         [Column(TypeName = "datetime2")]
         public DateTime CreateTime { get; set; }
 
+        [Display(Name="单位")]
         public string Name { get; set; }
 
         [Column(TypeName = "datetime2")]
