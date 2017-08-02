@@ -25,6 +25,7 @@ namespace HQF.Daily.Web45.DAL
 
         public int Price { get; set; }
 
+        [Display(Name = "备注")]
         public string Remark { get; set; }
 
         [Column(TypeName = "datetime2")]

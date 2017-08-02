@@ -13,6 +13,8 @@ namespace HQF.Daily.Web45.DAL
         [Column(TypeName = "datetime2")]
         public DateTime CreateTime { get; set; }
 
+        [Display(Name = "工程日期")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Column(TypeName = "datetime2")]
         public DateTime CurrentDate { get; set; }
 
