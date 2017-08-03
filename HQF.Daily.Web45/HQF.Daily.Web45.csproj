@@ -175,6 +175,7 @@
     <Compile Include="Controllers\WorkItemPricesController.cs" />
     <Compile Include="Controllers\WorkItemProgressesController.cs" />
     <Compile Include="Controllers\WorkItemsController.cs" />
+    <Compile Include="Controllers\WorkTypesController.cs" />
     <Compile Include="DAL\Company.cs" />
     <Compile Include="DAL\DailyDbContext.cs" />
     <Compile Include="DAL\DailyDbContextInitializer.cs" />
@@ -266,6 +267,11 @@
     <Content Include="Views\WorkItems\Details.cshtml" />
     <Content Include="Views\WorkItems\Edit.cshtml" />
     <Content Include="Views\WorkItems\Index.cshtml" />
+    <Content Include="Views\WorkTypes\Create.cshtml" />
+    <Content Include="Views\WorkTypes\Delete.cshtml" />
+    <Content Include="Views\WorkTypes\Details.cshtml" />
+    <Content Include="Views\WorkTypes\Edit.cshtml" />
+    <Content Include="Views\WorkTypes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
