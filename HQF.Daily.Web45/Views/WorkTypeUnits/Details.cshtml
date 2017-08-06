@@ -1,0 +1,51 @@
+﻿@model HQF.Daily.Web45.DAL.WorkTypeUnit
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>WorkTypeUnit</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.WorkType.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WorkType.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WorkUnit.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WorkUnit.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdateTime)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
