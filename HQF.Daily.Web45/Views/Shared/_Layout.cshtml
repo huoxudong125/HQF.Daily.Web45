@@ -17,19 +17,20 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("建工项目管理", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    @*<li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("项目报价", "Index", "WorkItemPrices")</li>
-                    <li>@Html.ActionLink("项目进度", "Index", "WorkItemProgresses")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
+                   
                     <li>@Html.ActionLink("项目", "Index", "WorkItems")</li>
                     <li>@Html.ActionLink("项目类型", "Index", "WorkTypes")</li>
                     <li>@Html.ActionLink("项目单位", "Index", "WorkUnits")</li>
+                    <li>@Html.ActionLink("项目报价", "Index", "WorkItemPrices")</li>
                     <li>@Html.ActionLink("项目类型单位", "Index", "WorkTypeUnits")</li>
+                    <li>@Html.ActionLink("项目进度", "Index", "WorkItemProgresses")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
