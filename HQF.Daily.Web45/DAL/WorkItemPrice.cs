@@ -22,7 +22,8 @@ namespace HQF.Daily.Web45.DAL
         public int WorkTypeUnitId { get; set; }
 
         public int? WorkTeamId { get; set; }
-
+        
+        [Display(Name="价格")]
         public int Price { get; set; }
 
         [Display(Name = "备注")]

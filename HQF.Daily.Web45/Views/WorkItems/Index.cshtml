@@ -19,16 +19,16 @@
             @Html.DisplayNameFor(model => model.WorkArea.Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.WorkType.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreateTime)
-        </th>
+            @Html.DisplayNameFor(model => model.WorkType.Name)
+        </th>    
         <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Remark)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateTime)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.UpdateTime)
@@ -45,16 +45,17 @@
             @Html.DisplayFor(modelItem => item.WorkArea.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.WorkType.Description)
+            @Html.DisplayFor(modelItem => item.WorkType.Name)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreateTime)
-        </td>
+      
         <td>
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Remark)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreateTime)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.UpdateTime)
