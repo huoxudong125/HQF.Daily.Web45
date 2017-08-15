@@ -8,26 +8,48 @@ namespace HQF.Daily.Web45.DAL
 
     public partial class WorkItemProgress
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
 
-        [Display(Name="新建时间")]
         [Column(TypeName = "datetime2")]
-        public DateTime CreateTime { get; set; }
-
         [Display(Name = "工程日期")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        [Column(TypeName = "datetime2")]
+
         public DateTime CurrentDate { get; set; }
+
+        public int WorkItemId { get; set; }
+
+        public int WorkTeamId { get; set; }
+
+        public double WorkPrice { get; set; }
+
+        public int WorkUnitId { get; set; }
+
+        [Display(Name = "当日工作量")]
+        public double WorkQuantity { get; set; }
+
+        public int MixingStationId { get; set; }
+
+        public int OperatorId { get; set; }
+
+        [StringLength(500)]
+        public string Remark { get; set; }
+
+        [Display(Name = "新建时间")]
+        [Column(TypeName = "datetime2")]
+        public DateTime CreateTime { get; set; }
 
         [Column(TypeName = "datetime2")]
         public DateTime UpdateTime { get; set; }
 
-        public int? WorkItemPriceId { get; set; }
+        public virtual ConcreteMixingStation ConcreteMixingStation { get; set; }
 
-        [Display(Name ="当日工作量")]
-        public double WorkQuantity { get; set; }
+        public virtual User User { get; set; }
 
-        [Display(Name ="单价")]
-        public virtual WorkItemPrice WorkItemPrice { get; set; }
+        public virtual WorkItem WorkItem { get; set; }
+
+        public virtual WorkTeam WorkTeam { get; set; }
+
+        public virtual WorkUnit WorkUnit { get; set; }
     }
 }

@@ -12,33 +12,38 @@ namespace HQF.Daily.Web45.DAL
         public WorkItem()
         {
             WorkItemPrices = new HashSet<WorkItemPrice>();
+            WorkItemProgresses = new HashSet<WorkItemProgress>();
             SubWorkItems = new HashSet<WorkItem>();
         }
 
         public int Id { get; set; }
 
-        [Column(TypeName = "datetime2")]
-        public DateTime CreateTime { get; set; }
-
-        [Display(Name = "Â∑•Á®ãÂêç")]
+        [Required]
+        [Display(Name = "π§≥Ã√˚")]
         public string Name { get; set; }
 
         public int? ParentId { get; set; }
 
-        [Display(Name="Â§áÊ≥®")]
+        [Display(Name = "±∏◊¢")]
         public string Remark { get; set; }
-
-        [Column(TypeName = "datetime2")]
-        public DateTime UpdateTime { get; set; }
 
         public int WorkAreaId { get; set; }
 
         public int WorkTypeId { get; set; }
 
+        [Column(TypeName = "datetime2")]
+        public DateTime CreateTime { get; set; }
+
+        [Column(TypeName = "datetime2")]
+        public DateTime UpdateTime { get; set; }
+
         public virtual WorkArea WorkArea { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<WorkItemPrice> WorkItemPrices { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<WorkItemProgress> WorkItemProgresses { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<WorkItem> SubWorkItems { get; set; }

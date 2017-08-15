@@ -182,9 +182,11 @@
     <Compile Include="Controllers\WorkTypeUnitsController.cs" />
     <Compile Include="Controllers\WorkUnitsController.cs" />
     <Compile Include="DAL\Company.cs" />
+    <Compile Include="DAL\ConcreteMixingStation.cs" />
     <Compile Include="DAL\DailyDbContext.cs" />
     <Compile Include="DAL\DailyDbContextInitializer.cs" />
     <Compile Include="DAL\Project.cs" />
+    <Compile Include="DAL\User.cs" />
     <Compile Include="DAL\WorkArea.cs" />
     <Compile Include="DAL\WorkItem.cs" />
     <Compile Include="DAL\WorkItemPrice.cs" />

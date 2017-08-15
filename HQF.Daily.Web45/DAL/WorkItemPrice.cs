@@ -8,12 +8,6 @@ namespace HQF.Daily.Web45.DAL
 
     public partial class WorkItemPrice
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public WorkItemPrice()
-        {
-            WorkItemProgresses = new HashSet<WorkItemProgress>();
-        }
-
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
 
@@ -21,12 +15,12 @@ namespace HQF.Daily.Web45.DAL
 
         public int WorkTypeUnitId { get; set; }
 
-        public int? WorkTeamId { get; set; }
-        
-        [Display(Name="ä»·æ ¼")]
+        public int WorkTeamId { get; set; }
+
+        [Display(Name = "¼Û¸ñ")]
         public int Price { get; set; }
 
-        [Display(Name = "å¤‡æ³¨")]
+        [Display(Name = "±¸×¢")]
         public string Remark { get; set; }
 
         [Column(TypeName = "datetime2")]
@@ -40,8 +34,5 @@ namespace HQF.Daily.Web45.DAL
         public virtual WorkTeam WorkTeam { get; set; }
 
         public virtual WorkTypeUnit WorkTypeUnit { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<WorkItemProgress> WorkItemProgresses { get; set; }
     }
 }

@@ -16,12 +16,13 @@ namespace HQF.Daily.Web45.DAL
 
         public int Id { get; set; }
 
-        [Column(TypeName = "datetime2")]
-        public DateTime CreateTime { get; set; }
-
         public string Decription { get; set; }
 
+        [Required]
         public string Name { get; set; }
+
+        [Column(TypeName = "datetime2")]
+        public DateTime CreateTime { get; set; }
 
         [Column(TypeName = "datetime2")]
         public DateTime UpdateTime { get; set; }
