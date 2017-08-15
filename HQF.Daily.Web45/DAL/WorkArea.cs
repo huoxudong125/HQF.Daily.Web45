@@ -16,19 +16,17 @@ namespace HQF.Daily.Web45.DAL
 
         public int Id { get; set; }
 
-        [Column(TypeName = "datetime2")]
-        public DateTime CreateTime { get; set; }
-
-        [Display(Name = "工区")]
+        [Required]
         public string Name { get; set; }
 
-        [Display(Name = "位置")]
         public string Position { get; set; }
 
         public int ProjectId { get; set; }
-        
-        [Display(Name = "备注")]
+
         public string Remark { get; set; }
+
+        [Column(TypeName = "datetime2")]
+        public DateTime CreateTime { get; set; }
 
         [Column(TypeName = "datetime2")]
         public DateTime UpdateTime { get; set; }

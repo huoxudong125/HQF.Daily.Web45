@@ -24,6 +24,7 @@ namespace HQF.Daily.Web45.DAL
         [Display(Name="描述")]
         public string Description { get; set; }
 
+        [Required]
         [Display(Name="名称")]
         public string Name { get; set; }
 

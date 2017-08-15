@@ -15,7 +15,9 @@ namespace HQF.Daily.Web45.DAL
         }
 
         public virtual DbSet<Company> Companys { get; set; }
+        public virtual DbSet<ConcreteMixingStation> ConcreteMixingStations { get; set; }
         public virtual DbSet<Project> Projects { get; set; }
+        public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<WorkArea> WorkAreas { get; set; }
         public virtual DbSet<WorkItemPrice> WorkItemPrices { get; set; }
         public virtual DbSet<WorkItemProgress> WorkItemProgresses { get; set; }
@@ -27,20 +29,46 @@ namespace HQF.Daily.Web45.DAL
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<ConcreteMixingStation>()
+                .HasMany(e => e.WorkItemProgresses)
+                .WithRequired(e => e.ConcreteMixingStation)
+                .HasForeignKey(e => e.MixingStationId)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<User>()
+                .HasMany(e => e.WorkItemProgresses)
+                .WithRequired(e => e.User)
+                .HasForeignKey(e => e.OperatorId)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<WorkItem>()
                 .HasMany(e => e.WorkItemPrices)
                 .WithRequired(e => e.WorkItem)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<WorkItem>()
-                .HasMany(e => e.SubWorkItems)
-                .WithOptional(e => e.ParentWorkItem)
-                .HasForeignKey(e => e.ParentId);
+                .HasMany(e => e.WorkItemProgresses)
+                .WithRequired(e => e.WorkItem)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<WorkItem>()
+                  .HasMany(e => e.SubWorkItems)
+                  .WithOptional(e => e.ParentWorkItem)
+                  .HasForeignKey(e => e.ParentId);
+
+            modelBuilder.Entity<WorkTeam>()
+                .HasMany(e => e.WorkItemProgresses)
+                .WithRequired(e => e.WorkTeam)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<WorkType>()
                 .HasMany(e => e.SubWorkTypes)
                 .WithOptional(e => e.ParentWorkType)
                 .HasForeignKey(e => e.ParentId);
+
+            modelBuilder.Entity<WorkUnit>()
+                .HasOptional(e => e.WorkItemProgress)
+                .WithRequired(e => e.WorkUnit);
         }
     }
 }

@@ -16,14 +16,17 @@ namespace HQF.Daily.Web45.DAL
 
         public int Id { get; set; }
 
-        [Column(TypeName = "datetime2")]
-        public DateTime CreateTime { get; set; }
-
-        [Display(Name="Âçï‰Ωç")]
+        [Required]
+        [Display(Name = "µ•Œª√˚≥∆")]
         public string Name { get; set; }
 
         [Column(TypeName = "datetime2")]
+        public DateTime CreateTime { get; set; }
+
+        [Column(TypeName = "datetime2")]
         public DateTime UpdateTime { get; set; }
+
+        public virtual WorkItemProgress WorkItemProgress { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<WorkTypeUnit> WorkTypeUnits { get; set; }
