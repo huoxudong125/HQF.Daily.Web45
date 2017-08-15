@@ -17,6 +17,7 @@ namespace HQF.Daily.Web45.DAL
         public int Id { get; set; }
 
         [Required]
+        [Display(Name="工区")]
         public string Name { get; set; }
 
         public string Position { get; set; }

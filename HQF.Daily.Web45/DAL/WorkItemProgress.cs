@@ -21,6 +21,7 @@ namespace HQF.Daily.Web45.DAL
 
         public int WorkTeamId { get; set; }
 
+        [Display(Name = "工程单价")]
         public double WorkPrice { get; set; }
 
         public int WorkUnitId { get; set; }

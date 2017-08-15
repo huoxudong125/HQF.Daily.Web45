@@ -264,11 +264,6 @@
     <Content Include="Views\WorkItemPrices\Details.cshtml" />
     <Content Include="Views\WorkItemPrices\Edit.cshtml" />
     <Content Include="Views\WorkItemPrices\Index.cshtml" />
-    <Content Include="Views\WorkItemProgresses\Create.cshtml" />
-    <Content Include="Views\WorkItemProgresses\Delete.cshtml" />
-    <Content Include="Views\WorkItemProgresses\Details.cshtml" />
-    <Content Include="Views\WorkItemProgresses\Edit.cshtml" />
-    <Content Include="Views\WorkItemProgresses\Index.cshtml" />
     <Content Include="Views\WorkItems\Create.cshtml" />
     <Content Include="Views\WorkItems\Delete.cshtml" />
     <Content Include="Views\WorkItems\Details.cshtml" />
@@ -304,6 +299,11 @@
     <Content Include="Views\WorkAreas\Details.cshtml" />
     <Content Include="Views\WorkAreas\Edit.cshtml" />
     <Content Include="Views\WorkAreas\Index.cshtml" />
+    <Content Include="Views\WorkItemProgresses\Create.cshtml" />
+    <Content Include="Views\WorkItemProgresses\Delete.cshtml" />
+    <Content Include="Views\WorkItemProgresses\Details.cshtml" />
+    <Content Include="Views\WorkItemProgresses\Edit.cshtml" />
+    <Content Include="Views\WorkItemProgresses\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

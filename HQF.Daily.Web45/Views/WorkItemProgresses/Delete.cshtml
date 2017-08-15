@@ -13,19 +13,43 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.WorkItemPrice.Remark)
+            @Html.DisplayNameFor(model => model.ConcreteMixingStation.Name)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.WorkItemPrice.Remark)
+            @Html.DisplayFor(model => model.ConcreteMixingStation.Name)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CreateTime)
+            @Html.DisplayNameFor(model => model.User.Name)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CreateTime)
+            @Html.DisplayFor(model => model.User.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WorkItem.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WorkItem.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WorkTeam.FullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WorkTeam.FullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WorkUnit.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WorkUnit.Name)
         </dd>
 
         <dt>
@@ -37,11 +61,19 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.UpdateTime)
+            @Html.DisplayNameFor(model => model.WorkPrice)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.UpdateTime)
+            @Html.DisplayFor(model => model.WorkPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WorkUnitId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WorkUnitId)
         </dd>
 
         <dt>
@@ -50,6 +82,30 @@
 
         <dd>
             @Html.DisplayFor(model => model.WorkQuantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Remark)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Remark)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdateTime)
         </dd>
 
     </dl>

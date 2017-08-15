@@ -89,11 +89,24 @@ namespace HQF.Daily.Web45.DAL
 
             context.SaveChanges();
 
+            var user = new User() { Name = "操作员1" };
+            context.Users.Add(user);
+
+            var mixingStation = new ConcreteMixingStation() { Name = "拌合站1" };
+            context.ConcreteMixingStations.Add(mixingStation);
+
+            
+
             var workItemProgess = new WorkItemProgress
             {
                 CurrentDate = DateTime.Parse("2017-07-01"),
-                WorkItemPrice = workItemPrice,
-                WorkQuantity = 10
+                WorkQuantity = 10,
+                WorkPrice=100.01,
+                WorkItem=workitem,
+                WorkTeam=workTeam,
+                WorkUnit=workUnit,
+                User=user,
+                ConcreteMixingStation=mixingStation
             };
 
             context.WorkItemProgresses.Add(workItemProgess);

@@ -13,42 +13,81 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.ConcreteMixingStation.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WorkItem.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WorkTeam.FullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WorkUnit.Name)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.CurrentDate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.WorkItemPrice.WorkTeam.Name)
+            @Html.DisplayNameFor(model => model.WorkPrice)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.WorkItemPrice.WorkItem.Name)
+            @Html.DisplayNameFor(model => model.WorkUnitId)
         </th>
- 
-      
-      
         <th>
             @Html.DisplayNameFor(model => model.WorkQuantity)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.WorkItemPrice.WorkTypeUnit.WorkUnit.Name)
+            @Html.DisplayNameFor(model => model.Remark)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpdateTime)
         </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
-    <tr>    
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ConcreteMixingStation.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WorkItem.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WorkTeam.FullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WorkUnit.Name)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.CurrentDate)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.WorkItemPrice.WorkTeam.Name)
+            @Html.DisplayFor(modelItem => item.WorkPrice)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.WorkItemPrice.WorkItem.Name)
-        </td>   
+            @Html.DisplayFor(modelItem => item.WorkUnitId)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.WorkQuantity)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.WorkItemPrice.WorkTypeUnit.WorkUnit.Name)
+            @Html.DisplayFor(modelItem => item.Remark)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreateTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UpdateTime)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

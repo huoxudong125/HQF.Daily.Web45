@@ -17,7 +17,7 @@ namespace HQF.Daily.Web45.DAL
         public int Id { get; set; }
 
         [Required]
-        [Display(Name = "µ¥Î»Ãû³Æ")]
+        [Display(Name = "å•ä½")]
         public string Name { get; set; }
 
         [Column(TypeName = "datetime2")]

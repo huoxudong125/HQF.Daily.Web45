@@ -25,7 +25,7 @@ namespace HQF.Daily.Web45.DAL
         public string Description { get; set; }
 
         [Required]
-        [Display(Name="名称")]
+        [Display(Name="工程类型名称")]
         public string Name { get; set; }
 
         public int? ParentId { get; set; }

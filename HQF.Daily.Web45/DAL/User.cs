@@ -19,6 +19,7 @@ namespace HQF.Daily.Web45.DAL
 
         [Required]
         [StringLength(50)]
+        [Display(Name="操作员")]
         public string Name { get; set; }
 
         [StringLength(10)]

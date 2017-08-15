@@ -19,12 +19,12 @@ namespace HQF.Daily.Web45.DAL
         public int Id { get; set; }
 
         [Required]
-        [Display(Name = "¹¤³ÌÃû")]
+        [Display(Name = "å·¥ç¨‹å")]
         public string Name { get; set; }
 
         public int? ParentId { get; set; }
 
-        [Display(Name = "±¸×¢")]
+        [Display(Name = "å¤‡æ³¨")]
         public string Remark { get; set; }
 
         public int WorkAreaId { get; set; }

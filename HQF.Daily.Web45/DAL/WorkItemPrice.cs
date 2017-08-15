@@ -17,10 +17,10 @@ namespace HQF.Daily.Web45.DAL
 
         public int WorkTeamId { get; set; }
 
-        [Display(Name = "¼Û¸ñ")]
+        [Display(Name = "ä»·æ ¼")]
         public int Price { get; set; }
 
-        [Display(Name = "±¸×¢")]
+        [Display(Name = "å¤‡æ³¨")]
         public string Remark { get; set; }
 
         [Column(TypeName = "datetime2")]

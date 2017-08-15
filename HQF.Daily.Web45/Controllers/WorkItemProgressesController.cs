@@ -17,7 +17,12 @@ namespace HQF.Daily.Web45.Controllers
         // GET: WorkItemProgresses
         public ActionResult Index()
         {
-            var workItemProgresses = db.WorkItemProgresses.Include(w => w.WorkItemPrice);
+            var workItemProgresses = db.WorkItemProgresses
+                .Include(w => w.ConcreteMixingStation)
+                .Include(w => w.User)
+                .Include(w => w.WorkItem)
+                .Include(w => w.WorkTeam)
+                .Include(w => w.WorkUnit);
             return View(workItemProgresses.ToList());
         }
 
@@ -39,16 +44,20 @@ namespace HQF.Daily.Web45.Controllers
         // GET: WorkItemProgresses/Create
         public ActionResult Create()
         {
-            ViewBag.WorkItemPriceId = new SelectList(db.WorkItemPrices, "Id", "Remark");
+            ViewBag.MixingStationId = new SelectList(db.ConcreteMixingStations, "Id", "Name");
+            ViewBag.OperatorId = new SelectList(db.Users, "Id", "Name");
+            ViewBag.WorkItemId = new SelectList(db.WorkItems, "Id", "Name");
+            ViewBag.WorkTeamId = new SelectList(db.WorkTeams, "Id", "Name");
+            ViewBag.Id = new SelectList(db.WorkUnits, "Id", "Name");
             return View();
         }
 
         // POST: WorkItemProgresses/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // 为了防止“过多发布”攻击，请启用要绑定到的特定属性，有关 
+        // 详细信息，请参阅 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,CreateTime,CurrentDate,UpdateTime,WorkItemPriceId,WorkQuantity")] WorkItemProgress workItemProgress)
+        public ActionResult Create([Bind(Include = "Id,CurrentDate,WorkItemId,WorkTeamId,WorkPrice,WorkUnitId,WorkQuantity,MixingStationId,OperatorId,Remark,CreateTime,UpdateTime")] WorkItemProgress workItemProgress)
         {
             if (ModelState.IsValid)
             {
@@ -57,7 +66,11 @@ namespace HQF.Daily.Web45.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.WorkItemPriceId = new SelectList(db.WorkItemPrices, "Id", "Remark", workItemProgress.WorkItemPriceId);
+            ViewBag.MixingStationId = new SelectList(db.ConcreteMixingStations, "Id", "Name", workItemProgress.MixingStationId);
+            ViewBag.OperatorId = new SelectList(db.Users, "Id", "Name", workItemProgress.OperatorId);
+            ViewBag.WorkItemId = new SelectList(db.WorkItems, "Id", "Name", workItemProgress.WorkItemId);
+            ViewBag.WorkTeamId = new SelectList(db.WorkTeams, "Id", "Name", workItemProgress.WorkTeamId);
+            ViewBag.Id = new SelectList(db.WorkUnits, "Id", "Name", workItemProgress.Id);
             return View(workItemProgress);
         }
 
@@ -73,16 +86,20 @@ namespace HQF.Daily.Web45.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.WorkItemPriceId = new SelectList(db.WorkItemPrices, "Id", "Remark", workItemProgress.WorkItemPriceId);
+            ViewBag.MixingStationId = new SelectList(db.ConcreteMixingStations, "Id", "Name", workItemProgress.MixingStationId);
+            ViewBag.OperatorId = new SelectList(db.Users, "Id", "Name", workItemProgress.OperatorId);
+            ViewBag.WorkItemId = new SelectList(db.WorkItems, "Id", "Name", workItemProgress.WorkItemId);
+            ViewBag.WorkTeamId = new SelectList(db.WorkTeams, "Id", "Name", workItemProgress.WorkTeamId);
+            ViewBag.Id = new SelectList(db.WorkUnits, "Id", "Name", workItemProgress.Id);
             return View(workItemProgress);
         }
 
         // POST: WorkItemProgresses/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // 为了防止“过多发布”攻击，请启用要绑定到的特定属性，有关 
+        // 详细信息，请参阅 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,CreateTime,CurrentDate,UpdateTime,WorkItemPriceId,WorkQuantity")] WorkItemProgress workItemProgress)
+        public ActionResult Edit([Bind(Include = "Id,CurrentDate,WorkItemId,WorkTeamId,WorkPrice,WorkUnitId,WorkQuantity,MixingStationId,OperatorId,Remark,CreateTime,UpdateTime")] WorkItemProgress workItemProgress)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +107,11 @@ namespace HQF.Daily.Web45.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.WorkItemPriceId = new SelectList(db.WorkItemPrices, "Id", "Remark", workItemProgress.WorkItemPriceId);
+            ViewBag.MixingStationId = new SelectList(db.ConcreteMixingStations, "Id", "Name", workItemProgress.MixingStationId);
+            ViewBag.OperatorId = new SelectList(db.Users, "Id", "Name", workItemProgress.OperatorId);
+            ViewBag.WorkItemId = new SelectList(db.WorkItems, "Id", "Name", workItemProgress.WorkItemId);
+            ViewBag.WorkTeamId = new SelectList(db.WorkTeams, "Id", "Name", workItemProgress.WorkTeamId);
+            ViewBag.Id = new SelectList(db.WorkUnits, "Id", "Name", workItemProgress.Id);
             return View(workItemProgress);
         }
 
