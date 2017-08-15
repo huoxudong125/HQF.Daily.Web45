@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2014                    */
-/* Created on:     2017/8/1 8:45:28                             */
+/* Created on:     2017/8/15 23:25:45                           */
 /*==============================================================*/
 
 
@@ -34,9 +34,37 @@ go
 
 if exists (select 1
    from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('dbo.WorkItemProgresses') and o.name = 'FK_WorkItemProgresses_WorkItemPrices_WorkItemPriceId')
+   where r.fkeyid = object_id('dbo.WorkItemProgresses') and o.name = 'FK_WORKITEM_REFERENCE_CONCRETE')
 alter table dbo.WorkItemProgresses
-   drop constraint FK_WorkItemProgresses_WorkItemPrices_WorkItemPriceId
+   drop constraint FK_WORKITEM_REFERENCE_CONCRETE
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('dbo.WorkItemProgresses') and o.name = 'FK_WORKITEM_USERS_UserID')
+alter table dbo.WorkItemProgresses
+   drop constraint FK_WORKITEM_USERS_UserID
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('dbo.WorkItemProgresses') and o.name = 'FK_WORKITEM_REFERENCE_WORKUNIT')
+alter table dbo.WorkItemProgresses
+   drop constraint FK_WORKITEM_REFERENCE_WORKUNIT
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('dbo.WorkItemProgresses') and o.name = 'FK_WORKITEM_REFERENCE_WORKTEAM')
+alter table dbo.WorkItemProgresses
+   drop constraint FK_WORKITEM_REFERENCE_WORKTEAM
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('dbo.WorkItemProgresses') and o.name = 'FK_WORKITEM_REFERENCE_WORKITEM')
+alter table dbo.WorkItemProgresses
+   drop constraint FK_WORKITEM_REFERENCE_WORKITEM
 go
 
 if exists (select 1
@@ -90,9 +118,23 @@ go
 
 if exists (select 1
             from  sysobjects
+           where  id = object_id('ConcreteMixingStations')
+            and   type = 'U')
+   drop table ConcreteMixingStations
+go
+
+if exists (select 1
+            from  sysobjects
            where  id = object_id('dbo.Projects')
             and   type = 'U')
    drop table dbo.Projects
+go
+
+if exists (select 1
+            from  sysobjects
+           where  id = object_id('Users')
+            and   type = 'U')
+   drop table Users
 go
 
 if exists (select 1
@@ -134,15 +176,6 @@ if exists (select 1
            where  id = object_id('dbo.WorkItemPrices')
             and   type = 'U')
    drop table dbo.WorkItemPrices
-go
-
-if exists (select 1
-            from  sysindexes
-           where  id    = object_id('dbo.WorkItemProgresses')
-            and   name  = 'IX_WorkItemProgresses_WorkItemPriceId'
-            and   indid > 0
-            and   indid < 255)
-   drop index dbo.WorkItemProgresses.IX_WorkItemProgresses_WorkItemPriceId
 go
 
 if exists (select 1
@@ -246,13 +279,13 @@ go
 /*==============================================================*/
 create table dbo.Companys (
    Id                   int                  identity(1, 1),
-   CreateTime           datetime2(7)         not null,
+   Name                 nvarchar(Max)        collate SQL_Latin1_General_CP1_CI_AS not null,
    Email                nvarchar(Max)        collate SQL_Latin1_General_CP1_CI_AS null,
    MobilePhone          nvarchar(Max)        collate SQL_Latin1_General_CP1_CI_AS null,
-   Name                 nvarchar(Max)        collate SQL_Latin1_General_CP1_CI_AS null,
    TelPhone             nvarchar(Max)        collate SQL_Latin1_General_CP1_CI_AS null,
-   UpdateTime           datetime2(7)         not null,
    WeChat               nvarchar(Max)        collate SQL_Latin1_General_CP1_CI_AS null,
+   CreateTime           datetime2(7)         not null default getdate(),
+   UpdateTime           datetime2(7)         not null default getdate(),
    constraint PK_Companys primary key (Id)
          on "PRIMARY"
 )
@@ -260,14 +293,44 @@ on "PRIMARY"
 go
 
 /*==============================================================*/
+/* Table: ConcreteMixingStations                                */
+/*==============================================================*/
+create table ConcreteMixingStations (
+   Id                   int                  not null,
+   Name                 nvarchar(50)         not null,
+   Remark               nvarchar(500)        null,
+   CreateTime           datetime2(7)         not null default getdate(),
+   UpdateTime           datetime2(7)         not null default getdate(),
+   constraint PK_CONCRETEMIXINGSTATIONS primary key (Id)
+)
+go
+
+if exists (select 1 from  sys.extended_properties
+           where major_id = object_id('ConcreteMixingStations') and minor_id = 0)
+begin 
+   declare @CurrentUser sysname 
+select @CurrentUser = user_name() 
+execute sp_dropextendedproperty 'MS_Description',  
+   'user', @CurrentUser, 'table', 'ConcreteMixingStations' 
+ 
+end 
+
+
+select @CurrentUser = user_name() 
+execute sp_addextendedproperty 'MS_Description',  
+   '混凝土拌合站', 
+   'user', @CurrentUser, 'table', 'ConcreteMixingStations'
+go
+
+/*==============================================================*/
 /* Table: Projects                                              */
 /*==============================================================*/
 create table dbo.Projects (
    Id                   int                  identity(1, 1),
-   CreateTime           datetime2(7)         not null,
    Decription           nvarchar(Max)        collate SQL_Latin1_General_CP1_CI_AS null,
-   Name                 nvarchar(Max)        collate SQL_Latin1_General_CP1_CI_AS null,
-   UpdateTime           datetime2(7)         not null,
+   Name                 nvarchar(Max)        collate SQL_Latin1_General_CP1_CI_AS not null,
+   CreateTime           datetime2(7)         not null default getdate(),
+   UpdateTime           datetime2(7)         not null default getdate(),
    constraint PK_Projects primary key (Id)
          on "PRIMARY"
 )
@@ -275,16 +338,29 @@ on "PRIMARY"
 go
 
 /*==============================================================*/
+/* Table: Users                                                 */
+/*==============================================================*/
+create table Users (
+   Id                   int                  not null,
+   Name                 nvarchar(50)         not null,
+   MobilePhone          nvarchar(10)         null,
+   CreateTime           datetime2(7)         not null default getdate(),
+   UpdateTime           datetime2(7)         not null default getdate(),
+   constraint PK_USERS primary key (Id)
+)
+go
+
+/*==============================================================*/
 /* Table: WorkAreas                                             */
 /*==============================================================*/
 create table dbo.WorkAreas (
    Id                   int                  identity(1, 1),
-   CreateTime           datetime2(7)         not null,
-   Name                 nvarchar(Max)        collate SQL_Latin1_General_CP1_CI_AS null,
+   Name                 nvarchar(Max)        collate SQL_Latin1_General_CP1_CI_AS not null,
    Position             nvarchar(Max)        collate SQL_Latin1_General_CP1_CI_AS null,
    ProjectId            int                  not null,
    Remark               nvarchar(Max)        collate SQL_Latin1_General_CP1_CI_AS null,
-   UpdateTime           datetime2(7)         not null,
+   CreateTime           datetime2(7)         not null default getdate(),
+   UpdateTime           datetime2(7)         not null default getdate(),
    constraint PK_WorkAreas primary key (Id)
          on "PRIMARY"
 )
@@ -309,11 +385,11 @@ create table dbo.WorkItemPrices (
    Id                   int                  not null,
    WorkItemId           int                  not null,
    WorkTypeUnitId       int                  not null,
-   WorkTeamId           int                  null,
+   WorkTeamId           int                  not null,
    Price                int                  not null,
    Remark               nvarchar(Max)        collate SQL_Latin1_General_CP1_CI_AS null,
-   CreateTime           datetime2(7)         not null,
-   UpdateTime           datetime2(7)         not null,
+   CreateTime           datetime2(7)         not null default getdate(),
+   UpdateTime           datetime2(7)         not null default getdate(),
    constraint PK_WorkItemPrices primary key (Id)
          on "PRIMARY"
 )
@@ -346,27 +422,166 @@ go
 /* Table: WorkItemProgresses                                    */
 /*==============================================================*/
 create table dbo.WorkItemProgresses (
-   Id                   int                  identity(1, 1),
-   CreateTime           datetime2(7)         not null,
+   Id                   int                  not null,
    CurrentDate          datetime2(7)         not null,
-   UpdateTime           datetime2(7)         not null,
-   WorkItemPriceId      int                  null,
+   WorkItemId           int                  not null,
+   WorkTeamId           int                  not null,
+   WorkPrice            float                not null,
+   WorkUnitId           int                  not null,
    WorkQuantity         float                not null,
+   MixingStationId      int                  not null,
+   OperatorId           int                  not null,
+   Remark               nvarchar(500)        null,
+   CreateTime           datetime2(7)         not null default getdate(),
+   UpdateTime           datetime2(7)         not null default getdate(),
    constraint PK_WorkItemProgresses primary key (Id)
          on "PRIMARY"
 )
 on "PRIMARY"
 go
 
-/*==============================================================*/
-/* Index: IX_WorkItemProgresses_WorkItemPriceId                 */
-/*==============================================================*/
+if exists(select 1 from sys.extended_properties p where
+      p.major_id = object_id('dbo.WorkItemProgresses')
+  and p.minor_id = (select c.column_id from sys.columns c where c.object_id = p.major_id and c.name = 'CurrentDate')
+)
+begin
+   execute sp_dropextendedproperty 'MS_Description', 
+   'user', 'dbo', 'table', 'WorkItemProgresses', 'column', 'CurrentDate'
+
+end
 
 
+execute sp_addextendedproperty 'MS_Description', 
+   '施工日期',
+   'user', 'dbo', 'table', 'WorkItemProgresses', 'column', 'CurrentDate'
+go
+
+if exists(select 1 from sys.extended_properties p where
+      p.major_id = object_id('dbo.WorkItemProgresses')
+  and p.minor_id = (select c.column_id from sys.columns c where c.object_id = p.major_id and c.name = 'WorkItemId')
+)
+begin
+   execute sp_dropextendedproperty 'MS_Description', 
+   'user', 'dbo', 'table', 'WorkItemProgresses', 'column', 'WorkItemId'
+
+end
 
 
-create nonclustered index IX_WorkItemProgresses_WorkItemPriceId on dbo.WorkItemProgresses (WorkItemPriceId ASC)
-   on "PRIMARY"
+execute sp_addextendedproperty 'MS_Description', 
+   '工程Id',
+   'user', 'dbo', 'table', 'WorkItemProgresses', 'column', 'WorkItemId'
+go
+
+if exists(select 1 from sys.extended_properties p where
+      p.major_id = object_id('dbo.WorkItemProgresses')
+  and p.minor_id = (select c.column_id from sys.columns c where c.object_id = p.major_id and c.name = 'WorkTeamId')
+)
+begin
+   execute sp_dropextendedproperty 'MS_Description', 
+   'user', 'dbo', 'table', 'WorkItemProgresses', 'column', 'WorkTeamId'
+
+end
+
+
+execute sp_addextendedproperty 'MS_Description', 
+   '工程队id',
+   'user', 'dbo', 'table', 'WorkItemProgresses', 'column', 'WorkTeamId'
+go
+
+if exists(select 1 from sys.extended_properties p where
+      p.major_id = object_id('dbo.WorkItemProgresses')
+  and p.minor_id = (select c.column_id from sys.columns c where c.object_id = p.major_id and c.name = 'WorkPrice')
+)
+begin
+   execute sp_dropextendedproperty 'MS_Description', 
+   'user', 'dbo', 'table', 'WorkItemProgresses', 'column', 'WorkPrice'
+
+end
+
+
+execute sp_addextendedproperty 'MS_Description', 
+   '工程队施工单价',
+   'user', 'dbo', 'table', 'WorkItemProgresses', 'column', 'WorkPrice'
+go
+
+if exists(select 1 from sys.extended_properties p where
+      p.major_id = object_id('dbo.WorkItemProgresses')
+  and p.minor_id = (select c.column_id from sys.columns c where c.object_id = p.major_id and c.name = 'WorkUnitId')
+)
+begin
+   execute sp_dropextendedproperty 'MS_Description', 
+   'user', 'dbo', 'table', 'WorkItemProgresses', 'column', 'WorkUnitId'
+
+end
+
+
+execute sp_addextendedproperty 'MS_Description', 
+   '工程队施工单位',
+   'user', 'dbo', 'table', 'WorkItemProgresses', 'column', 'WorkUnitId'
+go
+
+if exists(select 1 from sys.extended_properties p where
+      p.major_id = object_id('dbo.WorkItemProgresses')
+  and p.minor_id = (select c.column_id from sys.columns c where c.object_id = p.major_id and c.name = 'WorkQuantity')
+)
+begin
+   execute sp_dropextendedproperty 'MS_Description', 
+   'user', 'dbo', 'table', 'WorkItemProgresses', 'column', 'WorkQuantity'
+
+end
+
+
+execute sp_addextendedproperty 'MS_Description', 
+   '工作量',
+   'user', 'dbo', 'table', 'WorkItemProgresses', 'column', 'WorkQuantity'
+go
+
+if exists(select 1 from sys.extended_properties p where
+      p.major_id = object_id('dbo.WorkItemProgresses')
+  and p.minor_id = (select c.column_id from sys.columns c where c.object_id = p.major_id and c.name = 'MixingStationId')
+)
+begin
+   execute sp_dropextendedproperty 'MS_Description', 
+   'user', 'dbo', 'table', 'WorkItemProgresses', 'column', 'MixingStationId'
+
+end
+
+
+execute sp_addextendedproperty 'MS_Description', 
+   '拌合站Id',
+   'user', 'dbo', 'table', 'WorkItemProgresses', 'column', 'MixingStationId'
+go
+
+if exists(select 1 from sys.extended_properties p where
+      p.major_id = object_id('dbo.WorkItemProgresses')
+  and p.minor_id = (select c.column_id from sys.columns c where c.object_id = p.major_id and c.name = 'OperatorId')
+)
+begin
+   execute sp_dropextendedproperty 'MS_Description', 
+   'user', 'dbo', 'table', 'WorkItemProgresses', 'column', 'OperatorId'
+
+end
+
+
+execute sp_addextendedproperty 'MS_Description', 
+   '操作员',
+   'user', 'dbo', 'table', 'WorkItemProgresses', 'column', 'OperatorId'
+go
+
+if exists(select 1 from sys.extended_properties p where
+      p.major_id = object_id('dbo.WorkItemProgresses')
+  and p.minor_id = (select c.column_id from sys.columns c where c.object_id = p.major_id and c.name = 'Remark')
+)
+begin
+   execute sp_dropextendedproperty 'MS_Description', 
+   'user', 'dbo', 'table', 'WorkItemProgresses', 'column', 'Remark'
+
+end
+
+
+execute sp_addextendedproperty 'MS_Description', 
+   '备注',
+   'user', 'dbo', 'table', 'WorkItemProgresses', 'column', 'Remark'
 go
 
 /*==============================================================*/
@@ -374,13 +589,13 @@ go
 /*==============================================================*/
 create table dbo.WorkItems (
    Id                   int                  identity(1, 1),
-   CreateTime           datetime2(7)         not null,
-   Name                 nvarchar(Max)        collate SQL_Latin1_General_CP1_CI_AS null,
+   Name                 nvarchar(Max)        collate SQL_Latin1_General_CP1_CI_AS not null,
    ParentId             int                  null,
    Remark               nvarchar(Max)        collate SQL_Latin1_General_CP1_CI_AS null,
-   UpdateTime           datetime2(7)         not null,
    WorkAreaId           int                  not null,
    WorkTypeId           int                  not null,
+   CreateTime           datetime2(7)         not null default getdate(),
+   UpdateTime           datetime2(7)         not null default getdate(),
    constraint PK_WorkItems primary key (Id)
          on "PRIMARY"
 )
@@ -425,13 +640,13 @@ go
 /*==============================================================*/
 create table dbo.WorkTeams (
    Id                   int                  identity(1, 1),
-   ContractName         nvarchar(Max)        collate SQL_Latin1_General_CP1_CI_AS null,
-   CreateTime           datetime2(7)         not null,
    FullName             nvarchar(Max)        collate SQL_Latin1_General_CP1_CI_AS null,
+   ContractName         nvarchar(Max)        collate SQL_Latin1_General_CP1_CI_AS null,
    MobilePhone          nvarchar(Max)        collate SQL_Latin1_General_CP1_CI_AS null,
-   Name                 nvarchar(Max)        collate SQL_Latin1_General_CP1_CI_AS null,
+   Name                 nvarchar(Max)        collate SQL_Latin1_General_CP1_CI_AS not null,
    TelPhone             nvarchar(Max)        collate SQL_Latin1_General_CP1_CI_AS null,
-   UpdateTime           datetime2(7)         not null,
+   CreateTime           datetime2(7)         not null default getdate(),
+   UpdateTime           datetime2(7)         not null default getdate(),
    constraint PK_WorkTeams primary key (Id)
          on "PRIMARY"
 )
@@ -443,10 +658,10 @@ go
 /*==============================================================*/
 create table dbo.WorkTypeUnits (
    Id                   int                  identity(1, 1),
-   CreateTime           datetime2(7)         not null,
-   UpdateTime           datetime2(7)         not null,
    WorkTypeId           int                  not null,
    WorkUnitId           int                  not null,
+   CreateTime           datetime2(7)         not null default getdate(),
+   UpdateTime           datetime2(7)         not null default getdate(),
    constraint PK_WorkTypeUnits primary key (Id)
          on "PRIMARY"
 )
@@ -480,11 +695,11 @@ go
 /*==============================================================*/
 create table dbo.WorkTypes (
    Id                   int                  identity(1, 1),
-   CreateTime           datetime2(7)         not null,
+   Name                 nvarchar(Max)        collate SQL_Latin1_General_CP1_CI_AS not null,
    Description          nvarchar(Max)        collate SQL_Latin1_General_CP1_CI_AS null,
-   Name                 nvarchar(Max)        collate SQL_Latin1_General_CP1_CI_AS null,
    ParentId             int                  null,
-   UpdateTime           datetime2(7)         not null,
+   CreateTime           datetime2(7)         not null default getdate(),
+   UpdateTime           datetime2(7)         not null default getdate(),
    constraint PK_WorkTypes primary key (Id)
          on "PRIMARY"
 )
@@ -507,9 +722,9 @@ go
 /*==============================================================*/
 create table dbo.WorkUnits (
    Id                   int                  identity(1, 1),
-   CreateTime           datetime2(7)         not null,
-   Name                 nvarchar(Max)        collate SQL_Latin1_General_CP1_CI_AS null,
-   UpdateTime           datetime2(7)         not null,
+   Name                 nvarchar(Max)        collate SQL_Latin1_General_CP1_CI_AS not null,
+   CreateTime           datetime2(7)         not null default getdate(),
+   UpdateTime           datetime2(7)         not null default getdate(),
    constraint PK_WorkUnits primary key (Id)
          on "PRIMARY"
 )
@@ -539,8 +754,28 @@ alter table dbo.WorkItemPrices
 go
 
 alter table dbo.WorkItemProgresses
-   add constraint FK_WorkItemProgresses_WorkItemPrices_WorkItemPriceId foreign key (WorkItemPriceId)
-      references dbo.WorkItemPrices (Id)
+   add constraint FK_WORKITEM_REFERENCE_CONCRETE foreign key (MixingStationId)
+      references ConcreteMixingStations (Id)
+go
+
+alter table dbo.WorkItemProgresses
+   add constraint FK_WORKITEM_USERS_UserID foreign key (OperatorId)
+      references Users (Id)
+go
+
+alter table dbo.WorkItemProgresses
+   add constraint FK_WORKITEM_REFERENCE_WORKUNIT foreign key (Id)
+      references dbo.WorkUnits (Id)
+go
+
+alter table dbo.WorkItemProgresses
+   add constraint FK_WORKITEM_REFERENCE_WORKTEAM foreign key (WorkTeamId)
+      references dbo.WorkTeams (Id)
+go
+
+alter table dbo.WorkItemProgresses
+   add constraint FK_WORKITEM_REFERENCE_WORKITEM foreign key (WorkItemId)
+      references dbo.WorkItems (Id)
 go
 
 alter table dbo.WorkItems
