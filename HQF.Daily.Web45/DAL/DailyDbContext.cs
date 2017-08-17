@@ -67,8 +67,11 @@ namespace HQF.Daily.Web45.DAL
                 .HasForeignKey(e => e.ParentId);
 
             modelBuilder.Entity<WorkUnit>()
-                .HasOptional(e => e.WorkItemProgress)
-                .WithRequired(e => e.WorkUnit);
+                .HasMany(e => e.WorkItemProgresses)
+                .WithRequired(e => e.WorkUnit)
+                .HasForeignKey(e=>e.WorkUnitId);
+
+
         }
     }
 }

@@ -12,6 +12,7 @@ namespace HQF.Daily.Web45.DAL
         public WorkUnit()
         {
             WorkTypeUnits = new HashSet<WorkTypeUnit>();
+            WorkItemProgresses = new HashSet<WorkItemProgress>();
         }
 
         public int Id { get; set; }
@@ -26,7 +27,7 @@ namespace HQF.Daily.Web45.DAL
         [Column(TypeName = "datetime2")]
         public DateTime UpdateTime { get; set; }
 
-        public virtual WorkItemProgress WorkItemProgress { get; set; }
+        public virtual ICollection<WorkItemProgress> WorkItemProgresses { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<WorkTypeUnit> WorkTypeUnits { get; set; }

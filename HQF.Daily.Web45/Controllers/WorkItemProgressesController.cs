@@ -48,7 +48,8 @@ namespace HQF.Daily.Web45.Controllers
             ViewBag.OperatorId = new SelectList(db.Users, "Id", "Name");
             ViewBag.WorkItemId = new SelectList(db.WorkItems, "Id", "Name");
             ViewBag.WorkTeamId = new SelectList(db.WorkTeams, "Id", "Name");
-            ViewBag.Id = new SelectList(db.WorkUnits, "Id", "Name");
+            ViewBag.WorkUnitId = new SelectList(db.WorkUnits, "Id", "Name");
+            
             return View();
         }
 
@@ -70,7 +71,8 @@ namespace HQF.Daily.Web45.Controllers
             ViewBag.OperatorId = new SelectList(db.Users, "Id", "Name", workItemProgress.OperatorId);
             ViewBag.WorkItemId = new SelectList(db.WorkItems, "Id", "Name", workItemProgress.WorkItemId);
             ViewBag.WorkTeamId = new SelectList(db.WorkTeams, "Id", "Name", workItemProgress.WorkTeamId);
-            ViewBag.Id = new SelectList(db.WorkUnits, "Id", "Name", workItemProgress.Id);
+            ViewBag.WorkUnitId = new SelectList(db.WorkUnits, "Id", "Name", workItemProgress.WorkUnitId);
+
             return View(workItemProgress);
         }
 
@@ -90,7 +92,7 @@ namespace HQF.Daily.Web45.Controllers
             ViewBag.OperatorId = new SelectList(db.Users, "Id", "Name", workItemProgress.OperatorId);
             ViewBag.WorkItemId = new SelectList(db.WorkItems, "Id", "Name", workItemProgress.WorkItemId);
             ViewBag.WorkTeamId = new SelectList(db.WorkTeams, "Id", "Name", workItemProgress.WorkTeamId);
-            ViewBag.Id = new SelectList(db.WorkUnits, "Id", "Name", workItemProgress.Id);
+            ViewBag.WorkUnitId = new SelectList(db.WorkUnits, "Id", "Name", workItemProgress.WorkUnitId);
             return View(workItemProgress);
         }
 
@@ -111,7 +113,7 @@ namespace HQF.Daily.Web45.Controllers
             ViewBag.OperatorId = new SelectList(db.Users, "Id", "Name", workItemProgress.OperatorId);
             ViewBag.WorkItemId = new SelectList(db.WorkItems, "Id", "Name", workItemProgress.WorkItemId);
             ViewBag.WorkTeamId = new SelectList(db.WorkTeams, "Id", "Name", workItemProgress.WorkTeamId);
-            ViewBag.Id = new SelectList(db.WorkUnits, "Id", "Name", workItemProgress.Id);
+            ViewBag.WorkUnitId = new SelectList(db.WorkUnits, "Id", "Name", workItemProgress.WorkUnitId);
             return View(workItemProgress);
         }
 
