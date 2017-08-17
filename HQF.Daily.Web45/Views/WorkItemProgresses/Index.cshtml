@@ -22,10 +22,7 @@
             @Html.DisplayNameFor(model => model.WorkItem.Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.WorkTeam.FullName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.WorkUnit.Name)
+            @Html.DisplayNameFor(model => model.WorkTeam.Name)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.CurrentDate)
@@ -34,7 +31,7 @@
             @Html.DisplayNameFor(model => model.WorkPrice)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.WorkUnitId)
+            @Html.DisplayNameFor(model => model.WorkUnit.Name)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.WorkQuantity)
@@ -63,10 +60,7 @@
             @Html.DisplayFor(modelItem => item.WorkItem.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.WorkTeam.FullName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.WorkUnit.Name)
+            @Html.DisplayFor(modelItem => item.WorkTeam.Name)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.CurrentDate)
@@ -75,7 +69,7 @@
             @Html.DisplayFor(modelItem => item.WorkPrice)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.WorkUnitId)
+            @Html.DisplayFor(modelItem => item.WorkUnit.Name)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.WorkQuantity)

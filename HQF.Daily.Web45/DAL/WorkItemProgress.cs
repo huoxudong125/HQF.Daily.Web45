@@ -33,6 +33,7 @@ namespace HQF.Daily.Web45.DAL
 
         public int OperatorId { get; set; }
 
+        [Display(Name ="备注")]
         [StringLength(500)]
         public string Remark { get; set; }
 
@@ -40,6 +41,7 @@ namespace HQF.Daily.Web45.DAL
         [Column(TypeName = "datetime2")]
         public DateTime CreateTime { get; set; }
 
+        [Display(Name="更新时间")]
         [Column(TypeName = "datetime2")]
         public DateTime UpdateTime { get; set; }
 
