@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2014                    */
-/* Created on:     2017/8/15 23:25:45                           */
+/* Created on:     2017/8/18 8:22:44                            */
 /*==============================================================*/
 
 
@@ -34,6 +34,13 @@ go
 
 if exists (select 1
    from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('dbo.WorkItemProgresses') and o.name = 'FK_WORKITEM_FK_WORKIT_WORKUNIT')
+alter table dbo.WorkItemProgresses
+   drop constraint FK_WORKITEM_FK_WORKIT_WORKUNIT
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
    where r.fkeyid = object_id('dbo.WorkItemProgresses') and o.name = 'FK_WORKITEM_REFERENCE_CONCRETE')
 alter table dbo.WorkItemProgresses
    drop constraint FK_WORKITEM_REFERENCE_CONCRETE
@@ -44,13 +51,6 @@ if exists (select 1
    where r.fkeyid = object_id('dbo.WorkItemProgresses') and o.name = 'FK_WORKITEM_USERS_UserID')
 alter table dbo.WorkItemProgresses
    drop constraint FK_WORKITEM_USERS_UserID
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('dbo.WorkItemProgresses') and o.name = 'FK_WORKITEM_REFERENCE_WORKUNIT')
-alter table dbo.WorkItemProgresses
-   drop constraint FK_WORKITEM_REFERENCE_WORKUNIT
 go
 
 if exists (select 1
@@ -754,6 +754,11 @@ alter table dbo.WorkItemPrices
 go
 
 alter table dbo.WorkItemProgresses
+   add constraint FK_WORKITEM_FK_WORKIT_WORKUNIT foreign key (WorkUnitId)
+      references dbo.WorkUnits (Id)
+go
+
+alter table dbo.WorkItemProgresses
    add constraint FK_WORKITEM_REFERENCE_CONCRETE foreign key (MixingStationId)
       references ConcreteMixingStations (Id)
 go
@@ -761,11 +766,6 @@ go
 alter table dbo.WorkItemProgresses
    add constraint FK_WORKITEM_USERS_UserID foreign key (OperatorId)
       references Users (Id)
-go
-
-alter table dbo.WorkItemProgresses
-   add constraint FK_WORKITEM_REFERENCE_WORKUNIT foreign key (Id)
-      references dbo.WorkUnits (Id)
 go
 
 alter table dbo.WorkItemProgresses
