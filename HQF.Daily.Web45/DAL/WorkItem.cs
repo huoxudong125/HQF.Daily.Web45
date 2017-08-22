@@ -16,6 +16,8 @@ namespace HQF.Daily.Web45.DAL
             SubWorkItems = new HashSet<WorkItem>();
         }
 
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [Required]

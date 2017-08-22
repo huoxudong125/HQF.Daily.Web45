@@ -9,6 +9,8 @@ namespace HQF.Daily.Web45.DAL
     [Table("Companys")]
     public partial class Company
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [Required]

@@ -8,7 +8,8 @@ namespace HQF.Daily.Web45.DAL
 
     public partial class WorkItemProgress
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [Column(TypeName = "datetime2")]

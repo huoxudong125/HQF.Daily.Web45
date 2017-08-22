@@ -14,6 +14,8 @@ namespace HQF.Daily.Web45.DAL
             WorkAreas = new HashSet<WorkArea>();
         }
 
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         public string Decription { get; set; }

@@ -14,6 +14,8 @@ namespace HQF.Daily.Web45.DAL
             WorkItemPrices = new HashSet<WorkItemPrice>();
         }
 
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [Column(TypeName = "datetime2")]

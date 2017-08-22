@@ -16,6 +16,8 @@ namespace HQF.Daily.Web45.DAL
             WorkTypeUnits = new HashSet<WorkTypeUnit>();
         }
 
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [Column(TypeName = "datetime2")]

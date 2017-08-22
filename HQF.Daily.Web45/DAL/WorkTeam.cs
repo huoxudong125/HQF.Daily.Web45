@@ -15,24 +15,32 @@ namespace HQF.Daily.Web45.DAL
             WorkItemProgresses = new HashSet<WorkItemProgress>();
         }
 
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
+        [Display(Name = "全名")]
         public string FullName { get; set; }
 
+        [Display(Name = "合同")]
         public string ContractName { get; set; }
 
+        [Display(Name = "手机号")]
         public string MobilePhone { get; set; }
 
         [Required]
         [Display(Name = "工程队名")]
         public string Name { get; set; }
 
+        [Display(Name = "电话号码")]
         public string TelPhone { get; set; }
 
         [Column(TypeName = "datetime2")]
+        [Display(Name = "新建时间")]
         public DateTime CreateTime { get; set; }
 
         [Column(TypeName = "datetime2")]
+        [Display(Name = "更新时间")]
         public DateTime UpdateTime { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
