@@ -1,0 +1,52 @@
+﻿@model IEnumerable<HQF.Daily.Web45.Models.DailyWorkAreaProgress>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Day)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WorkAreaName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WorkItemName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WorkQuantity)
+        </th>
+      
+       
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Day)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WorkAreaName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WorkItemName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WorkQuantity)
+            </td>
+            
+        </tr>
+    }
+
+</table>
+
+
