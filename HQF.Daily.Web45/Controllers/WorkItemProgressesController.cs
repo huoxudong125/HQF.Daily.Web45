@@ -58,7 +58,7 @@ namespace HQF.Daily.Web45.Controllers
         // 详细信息，请参阅 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,CurrentDate,WorkItemId,WorkTeamId,WorkPrice,WorkUnitId,WorkQuantity,MixingStationId,OperatorId,Remark,CreateTime,UpdateTime")] WorkItemProgress workItemProgress)
+        public ActionResult Create([Bind(Include = "CurrentDate,WorkItemId,WorkTeamId,WorkPrice,WorkUnitId,WorkQuantity,MixingStationId,OperatorId,Remark")] WorkItemProgress workItemProgress)
         {
             if (ModelState.IsValid)
             {
